@@ -23,15 +23,15 @@
 
     <caching-scheme-mapping>
         <cache-mapping>
-            <cache-name>catalogue</cache-name>
-            <scheme-name>catalogue</scheme-name>
+            <cache-name>payments</cache-name>
+            <scheme-name>payments</scheme-name>
         </cache-mapping>
     </caching-scheme-mapping>
 
     <caching-schemes>
         <distributed-scheme>
-            <scheme-name>catalogue</scheme-name>
-            <service-name>Catalogue</service-name>
+            <scheme-name>payments</scheme-name>
+            <service-name>Payments</service-name>
             <backing-map-scheme>
                 <local-scheme>
                     <unit-calculator>BINARY</unit-calculator>

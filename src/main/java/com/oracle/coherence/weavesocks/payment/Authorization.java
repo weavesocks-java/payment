@@ -19,7 +19,7 @@ public class Authorization implements Serializable {
 
     @Override
     public String toString() {
-        return "PaymentResponse{" +
+        return "Authorization{" +
                 "authorised=" + authorised +
                 ", message=" + message +
                 '}';
