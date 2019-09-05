@@ -23,49 +23,48 @@
     ],
     "paths": {
         "/health": {
-	    "get": {
-		"description": "",
-		"operationId": "/health > GET",
-		"produces": [
-		    "application/json; charset=utf-8"
-		],
-		"parameters": [],
-		"responses": {
-		    "200": {
-			"description": "",
-			"schema": {
-			    "$ref": "#/definitions/health"
-			}
-		    }
-		}
-	    }
-	},
-	"/paymentAuth": {
-	    "post": {
-		"description": "Payment authorisation",
-		"operationId": "/paymentAuth > POST",
-		"produces": [
-		    "application/json; charset=utf-8"
-		],
-		"responses": {
-		    "200": {
-			"description": "",
-			"schema": {
-			    "$ref": "#/definitions/paymentAuth"
-			}
-		    }
-		}
-                
-	    }
-	}
+            "get": {
+                "description": "",
+                "operationId": "/health > GET",
+                "produces": [
+                    "application/json; charset=utf-8"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/health"
+                        }
+                    }
+                }
+            }
+        },
+        "/paymentAuth": {
+            "post": {
+                "description": "Payment authorisation",
+                "operationId": "/paymentAuth > POST",
+                "produces": [
+                    "application/json; charset=utf-8"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/paymentAuth"
+                        }
+                    }
+                }
+            }
+        }
     },
     "definitions": {
         "health": {
             "title": "Health",
             "type": "object",
             "properties": {
-		"health": {
-		    "type": "array",
+                "health": {
+                    "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
@@ -80,23 +79,23 @@
                             }
                         }
                     }
-		}
+                }
             },
             "required": [
                 "health"
             ]
         },
-	"paymentAuth": {
+        "paymentAuth": {
             "title": "paymentAuth response",
             "type": "object",
             "properties": {
-		"authorised": {
-		    "type": "boolean"
-		}
+                "authorised": {
+                    "type": "boolean"
+                }
             },
             "required": [
-		"authorised"
+                "authorised"
             ]
-	}
+        }
     }
 }
