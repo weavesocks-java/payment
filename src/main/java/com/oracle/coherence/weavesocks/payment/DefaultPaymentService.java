@@ -13,7 +13,7 @@ public class DefaultPaymentService implements PaymentService {
 
         String message = authorised ? "Payment authorised." :
                 amount <= 0 ? "Invalid payment amount." :
-                        "Payment declined: amount exceeds %.2f" + PaymentLimit;
+                        "Payment declined: amount exceeds " + String.format("%.2f", PaymentLimit);
 
         return new Authorization(authorised, message, null);
     }
