@@ -1,9 +1,26 @@
 package com.oracle.coherence.weavesocks.payment;
 
-/**
- * A service that authorize a payment.
- */
-public interface PaymentService {
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
-    public Authorization authorize(float amount);
+import io.helidon.microprofile.grpc.core.Unary;
+
+import com.tangosol.net.NamedCache;
+
+@ApplicationScoped
+public class PaymentService {
+
+    @Inject
+    private NamedCache<String, Authorization> payments;
+
+    @Inject
+    private AuthorizationService authorizationService;
+
+    @Unary
+    public Authorization authorize(PaymentRequest request) {
+        Authorization auth = authorizationService.authorize(request.getAmount());
+        payments.put(request.getOrderId(), auth);
+
+        return auth;
+    }
 }

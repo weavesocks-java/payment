@@ -20,14 +20,14 @@ public class PaymentResource {
     private NamedCache<String, Authorization> payments;
 
     @Inject
-    private PaymentService paymentService;
+    private AuthorizationService authorizationService;
 
     @POST
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
-    public Authorization authPayment(PaymentRequest paymentRequest) {
+    public Authorization authorize(PaymentRequest paymentRequest) {
 
-        Authorization auth = paymentService.authorize(paymentRequest.getAmount());
+        Authorization auth = authorizationService.authorize(paymentRequest.getAmount());
 
         payments.put(paymentRequest.getOrderId(), auth);
 

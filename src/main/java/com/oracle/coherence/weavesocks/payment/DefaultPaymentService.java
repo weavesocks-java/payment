@@ -3,7 +3,7 @@ package com.oracle.coherence.weavesocks.payment;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class DefaultPaymentService implements PaymentService {
+public class DefaultPaymentService implements AuthorizationService {
 
     private final static float PaymentLimit = 105f;
 
