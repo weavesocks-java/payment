@@ -43,6 +43,7 @@ public class PaymentService {
 
     // ---- inner class: Marshaller -----------------------------------------
 
+    @ApplicationScoped
     @Named("payment")
     public static class Marshaller implements MarshallerSupplier {
 
