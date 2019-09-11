@@ -1,13 +1,16 @@
 package com.oracle.coherence.weavesocks.payment;
 
+import com.oracle.io.pof.annotation.Portable;
+import com.oracle.io.pof.annotation.PortableType;
 
+@PortableType(id = 4)
 public class Card {
 
-    private String id;
+    @Portable private String id;
 
-    private String longNum;
-    private String expires;
-    private String ccv;
+    @Portable private String longNum;
+    @Portable private String expires;
+    @Portable private String ccv;
 
     public Card() {
     }

@@ -1,14 +1,18 @@
 package com.oracle.coherence.weavesocks.payment;
 
+import com.oracle.io.pof.annotation.Portable;
+import com.oracle.io.pof.annotation.PortableType;
+
+@PortableType(id = 3)
 public class Address {
 
-    private String id;
+    @Portable private String id;
 
-    private String number;
-    private String street;
-    private String city;
-    private String postcode;
-    private String country;
+    @Portable private String number;
+    @Portable private String street;
+    @Portable private String city;
+    @Portable private String postcode;
+    @Portable private String country;
 
     public Address() {
     }

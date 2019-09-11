@@ -15,6 +15,6 @@ public class DefaultPaymentService implements AuthorizationService {
                 amount <= 0 ? "Invalid payment amount." :
                         "Payment declined: amount exceeds " + String.format("%.2f", PaymentLimit);
 
-        return new Authorization(authorised, message, null);
+        return new Authorization(authorised, message);
     }
 }

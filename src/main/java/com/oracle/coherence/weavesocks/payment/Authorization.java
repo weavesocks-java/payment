@@ -2,19 +2,20 @@ package com.oracle.coherence.weavesocks.payment;
 
 import java.io.Serializable;
 
-public class Authorization implements Serializable {
-    private boolean authorised = false;
-    private String message;
-    private Object error;
+import com.oracle.io.pof.annotation.Portable;
+import com.oracle.io.pof.annotation.PortableType;
 
-    // For jackson
+@PortableType(id = 2)
+public class Authorization implements Serializable {
+    @Portable private boolean authorised = false;
+    @Portable private String message;
+
     public Authorization() {
     }
 
-    public Authorization(boolean authorised, String message, Object error) {
+    public Authorization(boolean authorised, String message) {
         this.authorised = authorised;
         this.message = message;
-        this.error = error;
     }
 
     @Override
@@ -40,6 +41,4 @@ public class Authorization implements Serializable {
     public String getMessage() {
         return message;
     }
-
-    public Object getError() {return error;}
 }

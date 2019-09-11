@@ -1,35 +1,25 @@
 package com.oracle.coherence.weavesocks.payment;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.oracle.io.pof.annotation.Portable;
+import com.oracle.io.pof.annotation.PortableType;
 
+@PortableType(id = 5)
 public class Customer {
 
-    private String id;
+    @Portable private String id;
 
-    private String firstName;
-    private String lastName;
-    private String username;
-
-    private List<Address> addresses = new ArrayList<>();
-
-    private List<Card> cards = new ArrayList<>();
+    @Portable private String firstName;
+    @Portable private String lastName;
+    @Portable private String username;
 
     public Customer() {
     }
 
-    public Customer(String id, String firstName, String lastName, String username, List<Address> addresses,
-                    List<Card> cards) {
+    public Customer(String id, String firstName, String lastName, String username) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.addresses = addresses;
-        this.cards = cards;
-    }
-
-    public Customer(String firstName, String lastName, String username, List<Address> addresses, List<Card> cards) {
-        this(null, firstName, lastName, username, addresses, cards);
     }
 
     @Override
@@ -39,8 +29,6 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
-                ", addresses=" + addresses +
-                ", cards=" + cards +
                 '}';
     }
 
@@ -85,22 +73,6 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
     }
 
     public String getUsername() {
