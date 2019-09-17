@@ -25,17 +25,25 @@ import io.grpc.MethodDescriptor;
 public class PaymentService {
     private static final Logger LOGGER = Logger.getLogger(PaymentService.class.getName());
 
-    @Inject
-    private NamedCache<String, Authorization> payments;
+    private final static float PaymentLimit = 105f;
 
     @Inject
-    private AuthorizationService authorizationService;
+    private NamedCache<String, Authorization> payments;
 
     @Unary
     public Authorization authorize(PaymentRequest request) {
         LOGGER.log(Level.INFO, "Authorizing request: " + request);
-        Authorization auth = authorizationService.authorize(request.getAmount());
-        payments.put(request.getOrderId(), auth);
+
+        float   amount     = request.amount;
+        boolean authorised = amount > 0 && amount < PaymentLimit;
+        String  message    = authorised
+                ? "Payment authorised"
+                : amount <= 0
+                        ? "Invalid payment amount"
+                        : "Payment declined: amount exceeds " + String.format("%.2f", PaymentLimit);
+
+        Authorization auth = new Authorization(authorised, message);
+        payments.put(request.orderId, auth);
 
         LOGGER.log(Level.INFO, "Sending authorization: " + auth);
         return auth;
@@ -51,12 +59,12 @@ public class PaymentService {
 
         @SuppressWarnings("Duplicates")
         public Marshaller() {
-            SimplePofContext ctx = new SimplePofContext();
-            ctx.registerUserType(1, PaymentRequest.class, new PortableTypeSerializer(1, PaymentRequest.class));
-            ctx.registerUserType(2, Authorization.class, new PortableTypeSerializer(2, Authorization.class));
-            ctx.registerUserType(3, Address.class, new PortableTypeSerializer(3, Address.class));
-            ctx.registerUserType(4, Card.class, new PortableTypeSerializer(4, Card.class));
-            ctx.registerUserType(5, Customer.class, new PortableTypeSerializer(5, Customer.class));
+            SimplePofContext ctx = new SimplePofContext()
+                    .registerPortableType(PaymentRequest.class)
+                    .registerPortableType(Authorization.class)
+                    .registerPortableType(Address.class)
+                    .registerPortableType(Card.class)
+                    .registerPortableType(Customer.class);
 
             marshaller = new PofMarshaller(ctx);
         }

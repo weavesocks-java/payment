@@ -5,22 +5,11 @@ import com.oracle.io.pof.annotation.PortableType;
 
 @PortableType(id = 1)
 public class PaymentRequest {
-    @Portable private String orderId;
-    @Portable private Address address;
-    @Portable private Card card;
-    @Portable private Customer customer;
-    @Portable private float amount;
-
-    public PaymentRequest() {
-    }
-
-    public PaymentRequest(String orderId, Address address, Card card, Customer customer, float amount) {
-        this.orderId = orderId;
-        this.address = address;
-        this.customer = customer;
-        this.card = card;
-        this.amount = amount;
-    }
+    @Portable String orderId;
+    @Portable Address address;
+    @Portable Card card;
+    @Portable Customer customer;
+    @Portable float amount;
 
     @Override
     public String toString() {
@@ -31,41 +20,5 @@ public class PaymentRequest {
                 ", customer=" + customer +
                 ", amount=" + amount +
                 '}';
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
     }
 }
